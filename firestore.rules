@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Test connection probe
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // Student Profiles
+    match /students/{studentId} {
+      allow read, write: if true;
+
+      // Sub-collection for student skills
+      match /skills/{skillId} {
+        allow read, write: if true;
+      }
+    }
+
+    // Job Opportunities & Postings
+    match /jobs/{jobId} {
+      allow read, write: if true;
+
+      match /required_skills/{skillId} {
+        allow read, write: if true;
+      }
+    }
+
+    // Career recommendations
+    match /recommendations/{recId} {
+      allow read, write: if true;
+    }
+
+    // Applications
+    match /applications/{appId} {
+      allow read, write: if true;
+    }
+  }
+}

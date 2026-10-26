@@ -1,0 +1,6 @@
+{
+  "name": "SkillBridge - Student Skill & Career Matcher",
+  "description": "Student skill management and automated job recommendation engine powered by MySQL relational data modeling and Gemini AI career matching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

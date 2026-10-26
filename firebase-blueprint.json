@@ -1,0 +1,182 @@
+{
+  "entities": {
+    "student_profile": {
+      "title": "Student Profile",
+      "description": "Student profile data with academic info, career goals, and skills inventory",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Unique identifier for the user or student"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Full name of the student"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the student"
+        },
+        "university": {
+          "type": "string",
+          "description": "College or university name"
+        },
+        "degree": {
+          "type": "string",
+          "description": "Degree program (e.g. BS Computer Science)"
+        },
+        "graduationYear": {
+          "type": "number",
+          "description": "Expected or actual graduation year"
+        },
+        "gpa": {
+          "type": "number",
+          "description": "Cumulative GPA on 4.0 scale"
+        },
+        "targetRole": {
+          "type": "string",
+          "description": "Target job title or career track"
+        },
+        "bio": {
+          "type": "string",
+          "description": "Short personal statement or career objective"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["userId", "fullName", "email"]
+    },
+    "student_skill": {
+      "title": "Student Skill",
+      "description": "A specific skill possessed by a student with proficiency rating",
+      "type": "object",
+      "properties": {
+        "studentId": {
+          "type": "string",
+          "description": "Identifier of the student"
+        },
+        "skillId": {
+          "type": "string",
+          "description": "Unique identifier of the skill"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the skill"
+        },
+        "category": {
+          "type": "string",
+          "description": "Skill category (e.g. Frontend, Backend, Data Science, Cloud, AI)"
+        },
+        "proficiency": {
+          "type": "number",
+          "description": "Proficiency level from 1 (Beginner) to 5 (Expert)"
+        },
+        "yearsExperience": {
+          "type": "number",
+          "description": "Years of experience with this skill"
+        }
+      },
+      "required": ["studentId", "skillId", "name", "category", "proficiency"]
+    },
+    "job_opportunity": {
+      "title": "Job Opportunity",
+      "description": "Job posting or internship opportunity with required and preferred skills",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Job title"
+        },
+        "company": {
+          "type": "string",
+          "description": "Company or organization name"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location or remote flag"
+        },
+        "workType": {
+          "type": "string",
+          "description": "Remote, Hybrid, or On-site"
+        },
+        "experienceLevel": {
+          "type": "string",
+          "description": "Entry, Mid, Senior, or Internship"
+        },
+        "salaryRange": {
+          "type": "string",
+          "description": "Salary or stipend range"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed job description"
+        },
+        "department": {
+          "type": "string",
+          "description": "Engineering, Data, Product, Design, etc."
+        },
+        "postedAt": {
+          "type": "string",
+          "description": "ISO timestamp when the job was posted"
+        }
+      },
+      "required": ["title", "company", "location", "workType"]
+    },
+    "career_recommendation": {
+      "title": "Career Recommendation",
+      "description": "Automated matching score and gap analysis for a student and job",
+      "type": "object",
+      "properties": {
+        "studentId": {
+          "type": "string",
+          "description": "Student identifier"
+        },
+        "jobId": {
+          "type": "string",
+          "description": "Job identifier"
+        },
+        "matchPercentage": {
+          "type": "number",
+          "description": "Computed match percentage 0-100"
+        },
+        "matchedSkillsCount": {
+          "type": "number",
+          "description": "Number of matching skills"
+        },
+        "gapSkillsCount": {
+          "type": "number",
+          "description": "Number of missing skills"
+        },
+        "aiSummary": {
+          "type": "string",
+          "description": "Automated recommendation narrative and bridge advice"
+        },
+        "recommendedAt": {
+          "type": "string",
+          "description": "ISO timestamp"
+        }
+      },
+      "required": ["studentId", "jobId", "matchPercentage"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": "student_profile",
+      "description": "User student profiles"
+    },
+    "/students/{studentId}/skills/{skillId}": {
+      "schema": "student_skill",
+      "description": "Student acquired skills"
+    },
+    "/jobs/{jobId}": {
+      "schema": "job_opportunity",
+      "description": "Published job postings and internship positions"
+    },
+    "/recommendations/{recId}": {
+      "schema": "career_recommendation",
+      "description": "Automated job recommendations and match analyses"
+    }
+  }
+}
